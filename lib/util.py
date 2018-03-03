@@ -431,23 +431,17 @@ def time_difference(distance_in_time, include_seconds):
         return "over %d years" % (round(distance_in_minutes / 525600))
 
 mainnet_block_explorers = {
-    'explorer.zcoin.net': ('http://explorer.zcoin.net',
+    'explorer.zcoin.io': ('https://explorer.zcoin.io',
                         {'tx': 'tx', 'addr': 'address'}),
-    'Blockr.io': ('https://xzc.blockr.io',
-                        {'tx': 'tx/info', 'addr': 'address/info'}),
-    'BlockCypher.com': ('https://live.blockcypher.com/xzc',
-                        {'tx': 'tx', 'addr': 'address'}),
-    'SoChain': ('https://chain.so',
-                        {'tx': 'tx/XZC', 'addr': 'address/XZC'}),
-    'system default': ('blockchain:',
+    # 'chainz.cryptoid.info': ('https://chainz.cryptoid.info/xzc',
+    #                     {'tx': 'tx.dws?', 'addr': 'address.dws?'}), # does not work due to extra /
+    'insight.zcoin.io': ('https://insight.zcoin.io',
                         {'tx': 'tx', 'addr': 'address'}),
 }
 
 testnet_block_explorers = {
-    'SoChain': ('https://chain.so',
-                        {'tx': 'tx/XZCTEST', 'addr': 'address/XZCTEST'}),
-    'system default': ('blockchain:',
-                       {'tx': 'tx', 'addr': 'address'}),
+    'testexplorer.zcoin.io': ('http://testexplorer.zcoin.io',
+                        {'tx': 'tx', 'addr': 'address'}),
 }
 
 def block_explorer_info():
@@ -455,7 +449,7 @@ def block_explorer_info():
     return testnet_block_explorers if bitcoin.NetworkConstants.TESTNET else mainnet_block_explorers
 
 def block_explorer(config):
-    return config.get('block_explorer', 'SoChain')
+    return config.get('block_explorer', 'explorer.zcoin.io')
 
 def block_explorer_tuple(config):
     return block_explorer_info().get(block_explorer(config))
